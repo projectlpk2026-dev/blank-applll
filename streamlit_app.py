@@ -138,10 +138,7 @@ golongan_unsur = {
     "Cs": "Golongan 1 (IA)", "Ba": "Golongan 2 (IIA)", "La": "Lantanida", "Ce": "Lantanida", "Pr": "Lantanida", "Nd": "Lantanida", "Pm": "Lantanida", "Sm": "Lantanida", "Eu": "Lantanida", "Gd": "Lantanida", "Tb": "Lantanida", "Dy": "Lantanida", "Ho": "Lantanida", "Er": "Lantanida", "Tm": "Lantanida", "Yb": "Lantanida", "Lu": "Golongan 3 (IIIB)", "Hf": "Golongan 4 (IVB)", "Ta": "Golongan 5 (VB)", "W": "Golongan 6 (VIB)", "Re": "Golongan 7 (VIIB)", "Os": "Golongan 8 (VIIIB)", "Ir": "Golongan 9 (VIIIB)", "Pt": "Golongan 10 (VIIIB)", "Au": "Golongan 11 (IB)", "Hg": "Golongan 12 (IIB)", "Tl": "Golongan 13 (IIIA)", "Pb": "Golongan 14 (IVA)", "Bi": "Golongan 15 (VA)", "Po": "Golongan 16 (VIA)", "At": "Golongan 17 (VIIA)", "Rn": "Golongan 18 (VIIIA)",
     "Fr": "Golongan 1 (IA)", "Ra": "Golongan 2 (IIA)", "Ac": "Aktinida", "Th": "Aktinida", "Pa": "Aktinida", "U": "Aktinida", "Np": "Aktinida", "Pu": "Aktinida", "Am": "Aktinida", "Cm": "Aktinida", "Bk": "Aktinida", "Cf": "Aktinida", "Es": "Aktinida", "Fm": "Aktinida", "Md": "Aktinida", "No": "Aktinida", "Lr": "Golongan 3 (IIIB)", "Rf": "Golongan 4 (IVB)", "Db": "Golongan 5 (VB)", "Sg": "Golongan 6 (VIB)", "Bh": "Golongan 7 (VIIB)", "Hs": "Golongan 8 (VIIIB)", "Mt": "Golongan 9 (VIIIB)", "Ds": "Golongan 10 (VIIIB)", "Rg": "Golongan 11 (IB)", "Cn": "Golongan 12 (IIB)", "Nh": "Golongan 13 (IIIA)", "Fl": "Golongan 14 (IVA)", "Mc": "Golongan 15 (VA)", "Lv": "Golongan 16 (VIA)", "Ts": "Golongan 17 (VIIA)", "Og": "Golongan 18 (VIIIA)"
 }
- 
-for simbol, data in unsur.items():
-    data["golongan"] = golongan_unsur.get(simbol, "-")
- 
+
 contoh_rumus = {
     # =========================
     # SENYAWA DASAR / GAS
@@ -843,7 +840,7 @@ if menu == "Kalkulator BM/Mr":
  
             st.success("Perhitungan berhasil.")
  
-            c1, c2, c3, c4 = st.columns(4)
+            c1, c2, c3 = st.columns(3)
  
             with c1:
                 st.markdown(
@@ -860,11 +857,6 @@ if menu == "Kalkulator BM/Mr":
             with c3:
                 st.markdown(
                     f"<div class='card'><p>Jumlah Unsur</p><div class='metric-value'>{len(detail)}</div></div>",
-                    unsafe_allow_html=True
-                )
-            with c4:
-                st.markdown(
-                    f"<div class='card'><p>Golongan Unsur</p><div class='metric-value' style='font-size:18px'>{daftar_golongan}</div></div>",
                     unsafe_allow_html=True
                 )
  
@@ -933,7 +925,6 @@ elif menu == "Database Unsur":
             "Simbol": simbol,
             "Nama Unsur": data["nama"],
             "Nomor Atom": data["nomor_atom"],
-            "Golongan": data.get("golongan", "-"),
             "Massa Atom": data["massa_atom"]
         }
         for simbol, data in unsur.items()
