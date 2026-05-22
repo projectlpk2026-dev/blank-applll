@@ -2,7 +2,7 @@ import re
 import streamlit as st
 import pandas as pd
 from datetime import datetime
-
+ 
 unsur = {
     "H": {"nama": "Hidrogen", "nomor_atom": 1, "massa_atom": 1.008},
     "He": {"nama": "Helium", "nomor_atom": 2, "massa_atom": 4.0026},
@@ -123,7 +123,7 @@ unsur = {
     "Ts": {"nama": "Tenesin", "nomor_atom": 117, "massa_atom": 294},
     "Og": {"nama": "Oganeson", "nomor_atom": 118, "massa_atom": 294}
 }
-
+ 
 contoh_rumus = {
     # =========================
     # SENYAWA DASAR / GAS
@@ -146,7 +146,7 @@ contoh_rumus = {
     "Sulfur dioksida": "SO2",
     "Sulfur trioksida": "SO3",
     "Hidrogen sulfida": "H2S",
-
+ 
     # =========================
     # ASAM
     # =========================
@@ -161,7 +161,7 @@ contoh_rumus = {
     "Asam karbonat": "H2CO3",
     "Asam format": "HCOOH",
     "Asam sitrat": "C6H8O7",
-
+ 
     # =========================
     # BASA
     # =========================
@@ -171,7 +171,7 @@ contoh_rumus = {
     "Magnesium hidroksida": "Mg(OH)2",
     "Amonium hidroksida": "NH4OH",
     "Barium hidroksida": "Ba(OH)2",
-
+ 
     # =========================
     # GARAM
     # =========================
@@ -194,7 +194,7 @@ contoh_rumus = {
     "Kalium iodida": "KI",
     "Perak klorida": "AgCl",
     "Barium sulfat": "BaSO4",
-
+ 
     # =========================
     # OKSIDATOR / ANALITIK
     # =========================
@@ -208,7 +208,7 @@ contoh_rumus = {
     "Boraks": "Na2B4O7(H2O)10",
     "EDTA": "C10H16N2O8",
     "Disodium EDTA": "C10H14N2Na2O8",
-
+ 
     # =========================
     # SENYAWA LOGAM / LAB
     # =========================
@@ -220,7 +220,7 @@ contoh_rumus = {
     "Aluminium sulfat": "Al2(SO4)3",
     "Tawas": "KAl(SO4)2(H2O)12",
     "FAS": "Fe(NH4)2(SO4)2(H2O)6",
-
+ 
     # =========================
     # SENYAWA ORGANIK
     # =========================
@@ -238,7 +238,7 @@ contoh_rumus = {
     "Urea": "CO(NH2)2",
     "Formaldehida": "CH2O",
     "Asetaldehida": "C2H4O",
-
+ 
     # =========================
     # MINERAL / INDUSTRI
     # =========================
@@ -252,34 +252,35 @@ contoh_rumus = {
     "Tembaga oksida": "CuO",
     "Mangan dioksida": "MnO2"
 }
-
+ 
 st.set_page_config(
     page_title="Kalkulator BM/Mr Kimia",
     page_icon="⚗️",
     layout="wide"
 )
-
+ 
 st.markdown("""
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap');
-
+ 
 :root {
     --bg: #070b14;
     --panel: rgba(15, 23, 42, 0.78);
     --panel-solid: #0f172a;
     --line: rgba(56, 189, 248, 0.28);
-    --text: #e5f3ff;
-    --muted: #94a3b8;
+    --text: #f8fbff;
+    --muted: #cbd5e1;
     --cyan: #38bdf8;
     --blue: #2563eb;
-    --green: #22c55e;
+    --green: #39ff14;
     --yellow: #facc15;
+    --white: #ffffff;
 }
-
+ 
 html, body, [class*="css"] {
     font-family: 'Inter', sans-serif;
 }
-
+ 
 .stApp {
     color: var(--text);
     background:
@@ -290,26 +291,26 @@ html, body, [class*="css"] {
     background-size: 140% 140%;
     animation: gradientMove 12s ease infinite;
 }
-
+ 
 @keyframes gradientMove {
     0% { background-position: 0% 50%; }
     50% { background-position: 100% 50%; }
     100% { background-position: 0% 50%; }
 }
-
+ 
 [data-testid="stSidebar"] {
     background: rgba(2, 6, 23, 0.88);
     border-right: 1px solid rgba(56, 189, 248, 0.18);
 }
-
+ 
 [data-testid="stSidebar"] * {
-    color: #e2e8f0 !important;
+    color: #ffffff !important;
 }
-
+ 
 .block-container {
     padding-top: 2rem;
 }
-
+ 
 .hero {
     position: relative;
     overflow: hidden;
@@ -325,7 +326,7 @@ html, body, [class*="css"] {
     color: white;
     margin-bottom: 26px;
 }
-
+ 
 .hero::before {
     content: "";
     position: absolute;
@@ -334,12 +335,12 @@ html, body, [class*="css"] {
     transform: translateX(-100%);
     animation: shine 4.5s ease-in-out infinite;
 }
-
+ 
 @keyframes shine {
     0% { transform: translateX(-100%); }
     48%, 100% { transform: translateX(100%); }
 }
-
+ 
 .logo-wrap {
     position: relative;
     width: 112px;
@@ -352,7 +353,7 @@ html, body, [class*="css"] {
     box-shadow: 0 0 35px rgba(56,189,248,.28);
     z-index: 1;
 }
-
+ 
 .logo-core {
     position: absolute;
     width: 30px;
@@ -361,7 +362,7 @@ html, body, [class*="css"] {
     background: radial-gradient(circle, #e0f2fe 0%, #38bdf8 45%, #2563eb 100%);
     box-shadow: 0 0 28px rgba(56,189,248,.9);
 }
-
+ 
 .orbit {
     position: absolute;
     width: 82px;
@@ -370,20 +371,20 @@ html, body, [class*="css"] {
     border-radius: 50%;
     animation: spin 4s linear infinite;
 }
-
+ 
 .orbit:nth-child(2) { transform: rotate(60deg); animation-duration: 5.2s; }
 .orbit:nth-child(3) { transform: rotate(120deg); animation-duration: 6.4s; }
-
+ 
 @keyframes spin {
     from { rotate: 0deg; }
     to { rotate: 360deg; }
 }
-
+ 
 .hero-content {
     position: relative;
     z-index: 1;
 }
-
+ 
 .hero h1 {
     margin: 0 0 10px 0;
     font-size: clamp(32px, 5vw, 54px);
@@ -393,31 +394,32 @@ html, body, [class*="css"] {
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
-
+ 
 .hero p {
     margin: 0;
-    color: #cbd5e1;
+    color: #ffffff;
     font-size: 16px;
     line-height: 1.65;
     max-width: 920px;
 }
-
+ 
 .badge-row {
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
     margin-top: 18px;
 }
-
+ 
 .badge {
     padding: 8px 12px;
     border-radius: 999px;
     background: rgba(56, 189, 248, 0.12);
     border: 1px solid rgba(56, 189, 248, 0.28);
-    color: #bae6fd;
+    color: #ffffff !important;
     font-size: 13px;
+    font-weight: 700;
 }
-
+ 
 .card {
     padding: 22px;
     border-radius: 22px;
@@ -426,71 +428,106 @@ html, body, [class*="css"] {
     box-shadow: 0 16px 38px rgba(0,0,0,0.30);
     transition: transform .25s ease, border-color .25s ease, box-shadow .25s ease;
 }
-
+ 
 .card:hover {
     transform: translateY(-4px);
     border-color: rgba(56, 189, 248, 0.55);
     box-shadow: 0 20px 55px rgba(56,189,248,0.14);
 }
-
+ 
 .card p {
-    color: #94a3b8;
+    color: #ffffff !important;
     margin-bottom: 8px;
+    font-weight: 700;
 }
-
+ 
 .metric-value {
     font-size: 34px;
     font-weight: 800;
-    color: #7dd3fc;
-    text-shadow: 0 0 20px rgba(56,189,248,.25);
+    color: #39ff14 !important;
+    text-shadow: 0 0 8px rgba(57,255,20,.65), 0 0 18px rgba(57,255,20,.35);
 }
-
+ 
+/* PERBAIKAN FONT LABEL: Masukkan rumus kimia, Tulis pertanyaan, Cari unsur, Pilih senyawa */
+.stTextInput label,
+.stTextArea label,
+.stSelectbox label,
+[data-testid="stWidgetLabel"],
+[data-testid="stWidgetLabel"] p,
+label {
+    color: #ffffff !important;
+    font-size: 16px !important;
+    font-weight: 800 !important;
+    letter-spacing: .2px;
+    text-shadow: 0 0 8px rgba(56, 189, 248, 0.55);
+}
+ 
 .stTextInput input,
 .stTextArea textarea {
-    background: rgba(15, 23, 42, 0.92) !important;
-    color: #e5f3ff !important;
-    border: 1px solid rgba(56, 189, 248, 0.28) !important;
-    border-radius: 14px !important;
-}
-
-/* SELECTBOX PILIH SENYAWA */
-.stSelectbox label {
+    background: rgba(15, 23, 42, 0.96) !important;
     color: #ffffff !important;
+    border: 1px solid rgba(56, 189, 248, 0.70) !important;
+    border-radius: 14px !important;
     font-weight: 700 !important;
+    font-size: 15px !important;
 }
-
+ 
+.stTextInput input::placeholder,
+.stTextArea textarea::placeholder {
+    color: #c7f9ff !important;
+    opacity: 1 !important;
+}
+ 
+/* SELECTBOX PILIH SENYAWA */
 .stSelectbox div[data-baseweb="select"] > div {
     background: rgba(15, 23, 42, 0.98) !important;
     color: #ffffff !important;
-    border: 1px solid rgba(56, 189, 248, 0.45) !important;
+    border: 1px solid rgba(56, 189, 248, 0.75) !important;
     border-radius: 14px !important;
-    font-weight: 600 !important;
+    font-weight: 800 !important;
 }
-
+ 
 .stSelectbox div[data-baseweb="select"] span {
     color: #ffffff !important;
-    font-weight: 600 !important;
+    font-weight: 800 !important;
     opacity: 1 !important;
 }
-
+ 
 /* DROPDOWN MENU */
 div[data-baseweb="popover"] {
     background-color: #0f172a !important;
     border: 1px solid rgba(56, 189, 248, 0.35) !important;
     border-radius: 12px !important;
 }
-
+ 
 div[data-baseweb="popover"] * {
     color: #ffffff !important;
     background-color: #0f172a !important;
-    font-weight: 500 !important;
+    font-weight: 600 !important;
 }
-
+ 
 div[data-baseweb="popover"] [role="option"]:hover {
     background-color: #1e40af !important;
     color: #ffffff !important;
 }
-
+ 
+/* TAMPILAN HASIL CONTOH RUMUS NEON TERANG: BaSO4, BaCl2, dll */
+.formula-neon {
+    margin-top: 10px;
+    padding: 14px 16px;
+    border-radius: 16px;
+    background: rgba(2, 6, 23, 0.92);
+    border: 1px solid rgba(57, 255, 20, 0.65);
+    color: #39ff14 !important;
+    font-family: 'Courier New', monospace;
+    font-size: 22px;
+    font-weight: 900;
+    text-align: center;
+    letter-spacing: 1px;
+    text-shadow: 0 0 5px rgba(57,255,20,.95), 0 0 14px rgba(57,255,20,.75), 0 0 28px rgba(57,255,20,.45);
+    box-shadow: inset 0 0 22px rgba(57,255,20,.08), 0 0 20px rgba(57,255,20,.16);
+}
+ 
 .stButton button, .stDownloadButton button {
     border: 0 !important;
     border-radius: 16px !important;
@@ -500,26 +537,27 @@ div[data-baseweb="popover"] [role="option"]:hover {
     box-shadow: 0 12px 30px rgba(56,189,248,.22) !important;
     transition: transform .2s ease, filter .2s ease !important;
 }
-
+ 
 .stButton button:hover, .stDownloadButton button:hover {
     transform: translateY(-2px);
     filter: brightness(1.1);
 }
-
+ 
 [data-testid="stDataFrame"], .stAlert {
     border-radius: 18px !important;
     overflow: hidden;
 }
-
+ 
 .chat-user {
     background: rgba(37, 99, 235, 0.20);
     border: 1px solid rgba(96, 165, 250, 0.35);
-    color: #dbeafe;
+    color: #ffffff;
     padding: 14px;
     border-radius: 16px;
     margin-bottom: 10px;
+    font-weight: 600;
 }
-
+ 
 .chat-bot {
     background: rgba(15, 23, 42, 0.86);
     border: 1px solid rgba(34, 197, 94, 0.30);
@@ -527,12 +565,13 @@ div[data-baseweb="popover"] [role="option"]:hover {
     padding: 14px;
     border-radius: 16px;
     margin-bottom: 14px;
+    font-weight: 600;
 }
-
+ 
 h1, h2, h3, h4, label, p, span {
     color: inherit;
 }
-
+ 
 @media (max-width: 720px) {
     .hero {
         grid-template-columns: 1fr;
@@ -547,84 +586,84 @@ h1, h2, h3, h4, label, p, span {
 }
 </style>
 """, unsafe_allow_html=True)
-
-
+ 
+ 
 def parse_rumus(rumus):
     stack = [{}]
     i = 0
-
+ 
     while i < len(rumus):
         karakter = rumus[i]
-
+ 
         if karakter == "(":
             stack.append({})
             i += 1
-
+ 
         elif karakter == ")":
             if len(stack) == 1:
                 raise ValueError("Tanda kurung tidak sesuai.")
-
+ 
             grup = stack.pop()
             i += 1
-
+ 
             angka = ""
             while i < len(rumus) and rumus[i].isdigit():
                 angka += rumus[i]
                 i += 1
-
+ 
             pengali = int(angka) if angka else 1
-
+ 
             for simbol, jumlah in grup.items():
                 stack[-1][simbol] = stack[-1].get(simbol, 0) + jumlah * pengali
-
+ 
         elif karakter.isupper():
             simbol = karakter
             i += 1
-
+ 
             if i < len(rumus) and rumus[i].islower():
                 simbol += rumus[i]
                 i += 1
-
+ 
             angka = ""
             while i < len(rumus) and rumus[i].isdigit():
                 angka += rumus[i]
                 i += 1
-
+ 
             jumlah = int(angka) if angka else 1
             stack[-1][simbol] = stack[-1].get(simbol, 0) + jumlah
-
+ 
         else:
             raise ValueError("Format rumus kimia tidak valid.")
-
+ 
     if len(stack) != 1:
         raise ValueError("Tanda kurung tidak sesuai.")
-
+ 
     return stack[0]
-
-
+ 
+ 
 def hitung_bm_mr(rumus):
     rumus = rumus.strip().replace(" ", "")
-
+ 
     if rumus == "":
         return None, None, "Rumus kimia tidak boleh kosong."
-
+ 
     try:
         hasil_parse = parse_rumus(rumus)
     except ValueError as e:
         return None, None, str(e)
-
+ 
     total = 0
     detail = []
-
+ 
     for simbol, jumlah_atom in hasil_parse.items():
         if simbol not in unsur:
             return None, None, f"Unsur '{simbol}' tidak ditemukan dalam database."
-
+ 
         data = unsur[simbol]
         massa_atom = data["massa_atom"]
         subtotal = massa_atom * jumlah_atom
         total += subtotal
-
+ 
         detail.append({
             "Simbol Unsur": simbol,
             "Nama Unsur": data["nama"],
@@ -634,20 +673,20 @@ def hitung_bm_mr(rumus):
             "Subtotal Massa": round(subtotal, 3),
             "Persentase Massa (%)": 0
         })
-
+ 
     for item in detail:
         item["Persentase Massa (%)"] = round(
             item["Subtotal Massa"] / total * 100, 2
         )
-
+ 
     return round(total, 3), detail, None
-
-
+ 
+ 
 def buat_pembahasan(rumus, total, detail):
     unsur_terlibat = ", ".join(
         [f"{d['Nama Unsur']} ({d['Simbol Unsur']})" for d in detail]
     )
-
+ 
     rincian = "; ".join(
         [
             f"{d['Simbol Unsur']} sebanyak {d['Jumlah Atom']} atom "
@@ -655,9 +694,9 @@ def buat_pembahasan(rumus, total, detail):
             for d in detail
         ]
     )
-
+ 
     dominan = max(detail, key=lambda x: x["Subtotal Massa"])
-
+ 
     return (
         f"Berdasarkan hasil perhitungan, senyawa {rumus} tersusun atas unsur "
         f"{unsur_terlibat}. Perhitungan BM/Mr dilakukan dengan mengalikan "
@@ -667,53 +706,53 @@ def buat_pembahasan(rumus, total, detail):
         f"Unsur dengan kontribusi massa terbesar adalah {dominan['Nama Unsur']} "
         f"({dominan['Simbol Unsur']}) sebesar {dominan['Persentase Massa (%)']}%."
     )
-
-
+ 
+ 
 def chatbot_jawab(pertanyaan):
     teks = pertanyaan.lower()
-
+ 
     if pertanyaan.strip() == "":
         return "Tulis pertanyaan dulu. Chatbot ini belum bisa membaca pikiran."
-
+ 
     if "apa itu bm" in teks or "apa itu mr" in teks:
         return (
             "BM atau Mr adalah jumlah massa atom relatif dari seluruh unsur "
             "penyusun suatu senyawa."
         )
-
+ 
     if "cara" in teks and "hitung" in teks:
         return (
             "Cara menghitung BM/Mr adalah: pisahkan unsur, tentukan jumlah atom, "
             "kalikan jumlah atom dengan massa atom, lalu jumlahkan semuanya."
         )
-
+ 
     if "fas" in teks:
         total, detail, error = hitung_bm_mr("Fe(NH4)2(SO4)2(H2O)6")
         return f"BM/Mr FAS Fe(NH4)2(SO4)2·6H2O adalah {total} g/mol."
-
+ 
     pola = re.search(r"([A-Z][A-Za-z0-9()]+)", pertanyaan)
     if pola:
         rumus = pola.group(1)
         total, detail, error = hitung_bm_mr(rumus)
-
+ 
         if error:
             return error
-
+ 
         return f"BM/Mr {rumus} = {total} g/mol."
-
+ 
     return (
         "Saya bisa membantu menghitung BM/Mr. Contoh pertanyaan: "
         "'hitung Mr H2SO4' atau 'berapa BM FAS?'."
     )
-
-
+ 
+ 
 if "riwayat" not in st.session_state:
     st.session_state.riwayat = []
-
+ 
 if "chat" not in st.session_state:
     st.session_state.chat = []
-
-
+ 
+ 
 st.markdown("""
 <div class="hero">
     <div class="logo-wrap">
@@ -734,8 +773,8 @@ st.markdown("""
     </div>
 </div>
 """, unsafe_allow_html=True)
-
-
+ 
+ 
 with st.sidebar:
     st.header("Menu")
     menu = st.radio(
@@ -747,74 +786,74 @@ with st.sidebar:
             "Database Unsur"
         ]
     )
-
+ 
     st.subheader("Contoh Rumus")
     pilihan = st.selectbox("Pilih senyawa", list(contoh_rumus.keys()))
-    st.code(contoh_rumus[pilihan])
-
-
+    st.markdown(f"<div class='formula-neon'>{contoh_rumus[pilihan]}</div>", unsafe_allow_html=True)
+ 
+ 
 if menu == "Kalkulator BM/Mr":
     st.subheader("Input Rumus Kimia")
-
+ 
     col1, col2 = st.columns([2, 1])
-
+ 
     with col1:
         rumus = st.text_input(
             "Masukkan rumus kimia",
             value=contoh_rumus[pilihan],
             placeholder="Contoh: H2O, CO2, Ca(OH)2"
         )
-
+ 
     with col2:
         st.markdown("### Rumus Dasar")
         st.info("BM/Mr = Σ massa atom × jumlah atom")
-
+ 
     if st.button("Hitung BM/Mr", use_container_width=True):
         total, detail, error = hitung_bm_mr(rumus)
-
+ 
         if error:
             st.error(error)
         else:
             rumus_bersih = rumus.strip().replace(" ", "")
             df = pd.DataFrame(detail)
-
+ 
             st.session_state.riwayat.insert(0, {
                 "Waktu": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
                 "Rumus": rumus_bersih,
                 "BM/Mr": total
             })
-
+ 
             st.success("Perhitungan berhasil.")
-
+ 
             c1, c2, c3 = st.columns(3)
-
+ 
             with c1:
                 st.markdown(
                     f"<div class='card'><p>Rumus Kimia</p><div class='metric-value'>{rumus_bersih}</div></div>",
                     unsafe_allow_html=True
                 )
-
+ 
             with c2:
                 st.markdown(
                     f"<div class='card'><p>Total BM/Mr</p><div class='metric-value'>{total}</div></div>",
                     unsafe_allow_html=True
                 )
-
+ 
             with c3:
                 st.markdown(
                     f"<div class='card'><p>Jumlah Unsur</p><div class='metric-value'>{len(detail)}</div></div>",
                     unsafe_allow_html=True
                 )
-
+ 
             st.subheader("Tabel Hasil Perhitungan")
             st.dataframe(df, use_container_width=True, hide_index=True)
-
+ 
             st.subheader("Grafik Persentase Massa Unsur")
             st.bar_chart(df.set_index("Simbol Unsur")[["Persentase Massa (%)"]])
-
+ 
             st.subheader("Pembahasan Otomatis")
             st.info(buat_pembahasan(rumus_bersih, total, detail))
-
+ 
             st.download_button(
                 "Download Hasil CSV",
                 data=df.to_csv(index=False).encode("utf-8"),
@@ -822,34 +861,34 @@ if menu == "Kalkulator BM/Mr":
                 mime="text/csv",
                 use_container_width=True
             )
-
-
+ 
+ 
 elif menu == "Riwayat Pencarian":
     st.subheader("Riwayat Pencarian")
-
+ 
     if len(st.session_state.riwayat) == 0:
         st.warning("Belum ada riwayat pencarian.")
     else:
         df_riwayat = pd.DataFrame(st.session_state.riwayat)
         st.dataframe(df_riwayat, use_container_width=True, hide_index=True)
-
+ 
         if st.button("Hapus Riwayat"):
             st.session_state.riwayat = []
             st.rerun()
-
-
+ 
+ 
 elif menu == "Chatbot Mini":
     st.subheader("Chatbot Mini BM/Mr")
-
+ 
     pertanyaan = st.text_input("Tulis pertanyaan")
-
+ 
     if st.button("Kirim"):
         jawaban = chatbot_jawab(pertanyaan)
         st.session_state.chat.append({
             "user": pertanyaan,
             "bot": jawaban
         })
-
+ 
     for chat in reversed(st.session_state.chat):
         st.markdown(
             f"<div class='chat-user'><b>Anda:</b> {chat['user']}</div>",
@@ -859,13 +898,13 @@ elif menu == "Chatbot Mini":
             f"<div class='chat-bot'><b>Bot:</b> {chat['bot']}</div>",
             unsafe_allow_html=True
         )
-
-
+ 
+ 
 elif menu == "Database Unsur":
     st.subheader("Database Unsur")
-
+ 
     keyword = st.text_input("Cari unsur")
-
+ 
     df_unsur = pd.DataFrame([
         {
             "Simbol": simbol,
@@ -875,15 +914,14 @@ elif menu == "Database Unsur":
         }
         for simbol, data in unsur.items()
     ])
-
+ 
     if keyword:
         keyword = keyword.lower()
         df_unsur = df_unsur[
             df_unsur["Simbol"].str.lower().str.contains(keyword)
             | df_unsur["Nama Unsur"].str.lower().str.contains(keyword)
         ]
-
+ 
     st.dataframe(df_unsur, use_container_width=True, hide_index=True)
-
+ 
 st.caption("Aplikasi Kalkulator BM/Mr Kimia berbasis Streamlit.")
-
