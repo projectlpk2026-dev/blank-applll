@@ -668,6 +668,7 @@ def hitung_bm_mr(rumus):
             "Simbol Unsur": simbol,
             "Nama Unsur": data["nama"],
             "Nomor Atom": data["nomor_atom"],
+            "Golongan": data["golongan"],
             "Jumlah Atom": jumlah_atom,
             "Massa Atom": massa_atom,
             "Subtotal Massa": round(subtotal, 3),
@@ -933,3 +934,4 @@ elif menu == "Database Unsur":
     st.dataframe(df_unsur, use_container_width=True, hide_index=True)
  
 st.caption("Aplikasi Kalkulator BM/Mr Kimia berbasis Streamlit.")
+
