@@ -445,11 +445,50 @@ html, body, [class*="css"] {
     text-shadow: 0 0 20px rgba(56,189,248,.25);
 }
 
-.stTextInput input, .stSelectbox div[data-baseweb="select"] > div, .stTextArea textarea {
+.stTextInput input,
+.stTextArea textarea {
     background: rgba(15, 23, 42, 0.92) !important;
     color: #e5f3ff !important;
     border: 1px solid rgba(56, 189, 248, 0.28) !important;
     border-radius: 14px !important;
+}
+
+/* SELECTBOX PILIH SENYAWA */
+.stSelectbox label {
+    color: #ffffff !important;
+    font-weight: 700 !important;
+}
+
+.stSelectbox div[data-baseweb="select"] > div {
+    background: rgba(15, 23, 42, 0.98) !important;
+    color: #ffffff !important;
+    border: 1px solid rgba(56, 189, 248, 0.45) !important;
+    border-radius: 14px !important;
+    font-weight: 600 !important;
+}
+
+.stSelectbox div[data-baseweb="select"] span {
+    color: #ffffff !important;
+    font-weight: 600 !important;
+    opacity: 1 !important;
+}
+
+/* DROPDOWN MENU */
+div[data-baseweb="popover"] {
+    background-color: #0f172a !important;
+    border: 1px solid rgba(56, 189, 248, 0.35) !important;
+    border-radius: 12px !important;
+}
+
+div[data-baseweb="popover"] * {
+    color: #ffffff !important;
+    background-color: #0f172a !important;
+    font-weight: 500 !important;
+}
+
+div[data-baseweb="popover"] [role="option"]:hover {
+    background-color: #1e40af !important;
+    color: #ffffff !important;
 }
 
 .stButton button, .stDownloadButton button {
@@ -685,7 +724,7 @@ st.markdown("""
     </div>
     <div class="hero-content">
         <h1>Kalkulator BM / Mr Kimia</h1>
-        <p>Hitung bobot molekul, persentase massa unsur, pembahasan otomatis, riwayat pencarian, dan chatbot mini dalam tampilan dark neon yang sedikit lebih manusiawi daripada tabel polos.</p>
+        <p> Aplikasi kalkulator kimia interaktif yang membantu menghitung Bobot Molekul (BM/Mr) senyawa secara cepat, akurat, dan mudah, dilengkapi fitur visualisasi data, database unsur, dan chatbot edukatif.</p>
         <div class="badge-row">
             <span class="badge">⚗️ Chemical Calculator</span>
             <span class="badge">🌙 Dark Mode</span>
