@@ -918,7 +918,6 @@ elif menu == "Database Unsur":
             "Nama Unsur": data["nama"],
             "Nomor Atom": data["nomor_atom"],
             "Golongan": data["golongan"],
-            "Jumlah Atom: data["jumlah_atom"],
             "Massa Atom": data["massa_atom"]
         }
         for simbol, data in unsur.items()
