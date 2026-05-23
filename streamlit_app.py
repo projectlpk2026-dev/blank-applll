@@ -729,14 +729,12 @@ if menu == "Kalkulator BM/Mr":
  
     col1, col2 = st.columns([2, 1])
  
-    with col1:
         rumus = st.text_input(
             "Masukkan rumus kimia",
             value=contoh_rumus[pilihan],
             placeholder="Contoh: H2O, CO2, Ca(OH)2"
         )
- 
-    with col2:
+
         st.markdown("### Rumus Dasar")
         st.info("BM/Mr = Σ massa atom × jumlah atom")
  
