@@ -709,51 +709,6 @@ def buat_pembahasan(rumus, total, detail):
     )
  
  
-def chatbot_jawab(pertanyaan):
-    teks = pertanyaan.lower()
- 
-    if pertanyaan.strip() == "":
-        return "Tulis pertanyaan dulu. Chatbot ini belum bisa membaca pikiran."
- 
-    if "apa itu bm" in teks or "apa itu mr" in teks:
-        return (
-            "BM atau Mr adalah jumlah massa atom relatif dari seluruh unsur "
-            "penyusun suatu senyawa."
-        )
- 
-    if "cara" in teks and "hitung" in teks:
-        return (
-            "Cara menghitung BM/Mr adalah: pisahkan unsur, tentukan jumlah atom, "
-            "kalikan jumlah atom dengan massa atom, lalu jumlahkan semuanya."
-        )
- 
-    if "fas" in teks:
-        total, detail, error = hitung_bm_mr("Fe(NH4)2(SO4)2(H2O)6")
-        return f"BM/Mr FAS Fe(NH4)2(SO4)2·6H2O adalah {total} g/mol."
- 
-    pola = re.search(r"([A-Z][A-Za-z0-9()]+)", pertanyaan)
-    if pola:
-        rumus = pola.group(1)
-        total, detail, error = hitung_bm_mr(rumus)
- 
-        if error:
-            return error
- 
-        return f"BM/Mr {rumus} = {total} g/mol."
- 
-    return (
-        "Saya bisa membantu menghitung BM/Mr. Contoh pertanyaan: "
-        "'hitung Mr H2SO4' atau 'berapa BM FAS?'."
-    )
- 
- 
-if "riwayat" not in st.session_state:
-    st.session_state.riwayat = []
- 
-if "chat" not in st.session_state:
-    st.session_state.chat = []
- 
- 
 st.markdown("""
 <div class="hero">
     <div class="logo-wrap">
@@ -777,7 +732,6 @@ with st.sidebar:
         [
             "Kalkulator BM/Mr",
             "Riwayat Pencarian",
-            "Chatbot Mini",
             "Database Unsur"
         ]
     )
@@ -874,30 +828,6 @@ elif menu == "Riwayat Pencarian":
         if st.button("Hapus Riwayat"):
             st.session_state.riwayat = []
             st.rerun()
- 
- 
-elif menu == "Chatbot Mini":
-    st.subheader("Chatbot Mini BM/Mr")
- 
-    pertanyaan = st.text_input("Tulis pertanyaan")
- 
-    if st.button("Kirim"):
-        jawaban = chatbot_jawab(pertanyaan)
-        st.session_state.chat.append({
-            "user": pertanyaan,
-            "bot": jawaban
-        })
- 
-    for chat in reversed(st.session_state.chat):
-        st.markdown(
-            f"<div class='chat-user'><b>Anda:</b> {chat['user']}</div>",
-            unsafe_allow_html=True
-        )
-        st.markdown(
-            f"<div class='chat-bot'><b>Bot:</b> {chat['bot']}</div>",
-            unsafe_allow_html=True
-        )
- 
  
 elif menu == "Database Unsur":
     st.subheader("Database Unsur")
