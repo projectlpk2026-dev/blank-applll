@@ -765,12 +765,6 @@ st.markdown("""
     <div class="hero-content">
         <h1>Kalkulator BM / Mr Kimia</h1>
         <p> Aplikasi kalkulator kimia interaktif yang membantu menghitung Bobot Molekul (BM/Mr) senyawa secara cepat, akurat, dan mudah, dilengkapi fitur visualisasi data, database unsur, dan chatbot edukatif.</p>
-        <div class="badge-row">
-            <span class="badge">⚗️ Chemical Calculator</span>
-            <span class="badge">🌙 Dark Mode</span>
-            <span class="badge">✨ Animated UI</span>
-            <span class="badge">🧪 Neon Molecule Logo</span>
-        </div>
     </div>
 </div>
 """, unsafe_allow_html=True)
