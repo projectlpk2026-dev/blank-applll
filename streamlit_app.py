@@ -787,14 +787,6 @@ if menu == "Kalkulator BM/Mr":
             st.subheader("Pembahasan Otomatis")
             st.info(buat_pembahasan(rumus_bersih, total, detail))
  
-            st.download_button(
-                "Download Hasil CSV",
-                data=df.to_csv(index=False).encode("utf-8"),
-                file_name=f"hasil_bm_mr_{rumus_bersih}.csv",
-                mime="text/csv",
-                use_container_width=True
-            )
- 
  
 elif menu == "Riwayat Pencarian":
     st.subheader("Riwayat Pencarian")
