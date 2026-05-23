@@ -123,7 +123,7 @@ unsur = {
     "Ts": {"nama": "Tenesin", "nomor_atom": 117, "massa_atom": 294, "golongan": "7A"},
     "Og": {"nama": "Oganeson", "nomor_atom": 118, "massa_atom": 294, "golongan": "8A"}
 } 
-
+ 
 contoh_rumus = {
     # =========================
     # SENYAWA DASAR / GAS
@@ -687,7 +687,7 @@ def buat_pembahasan(rumus, total, detail):
         f"Unsur dengan kontribusi massa terbesar adalah {dominan['Nama Unsur']} "
         f"({dominan['Simbol Unsur']}) sebesar {dominan['Persentase Massa (%)']}%."
     )
-
+ 
 if "riwayat" not in st.session_state:
     st.session_state.riwayat = []
  
@@ -725,6 +725,15 @@ with st.sidebar:
  
  
 if menu == "Kalkulator BM/Mr":
+ 
+    st.markdown("""
+    <div class="card" style="margin-bottom: 18px;">
+        <p style="font-size: 18px; margin-bottom: 8px;">Pengertian BM</p>
+        <div style="color: #ffffff; font-size: 16px; line-height: 1.7; font-weight: 600;">
+            Bobot molekul adalah massa dari total atom penyusun suatu senyawa yang satuannya dinyatakan dalam satuan g/mol.
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
  
     st.subheader("Input Rumus Kimia")
  
@@ -773,7 +782,7 @@ if menu == "Kalkulator BM/Mr":
                     f"<div class='card'><p>Jumlah Unsur</p><div class='metric-value'>{len(detail)}</div></div>",
                     unsafe_allow_html=True
                 )
-
+ 
             with c4:
                golongan_list = ", ".join(sorted(set([d["Golongan"] for d in detail])))
                st.markdown(
@@ -827,4 +836,4 @@ elif menu == "Database Unsur":
     st.dataframe(df_unsur, use_container_width=True, hide_index=True)
  
 st.caption("Aplikasi Kalkulator BM/Mr Kimia berbasis Streamlit.")
-
+ 
