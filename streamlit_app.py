@@ -850,9 +850,6 @@ if menu == "Kalkulator BM/Mr":
             st.subheader("Tabel Hasil Perhitungan")
             st.dataframe(df, use_container_width=True, hide_index=True)
  
-            st.subheader("Grafik Persentase Massa Unsur")
-            st.bar_chart(df.set_index("Simbol Unsur")[["Persentase Massa (%)"]])
- 
             st.subheader("Pembahasan Otomatis")
             st.info(buat_pembahasan(rumus_bersih, total, detail))
  
