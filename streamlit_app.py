@@ -548,26 +548,6 @@ div[data-baseweb="popover"] [role="option"]:hover {
     overflow: hidden;
 }
  
-.chat-user {
-    background: rgba(37, 99, 235, 0.20);
-    border: 1px solid rgba(96, 165, 250, 0.35);
-    color: #ffffff;
-    padding: 14px;
-    border-radius: 16px;
-    margin-bottom: 10px;
-    font-weight: 600;
-}
- 
-.chat-bot {
-    background: rgba(15, 23, 42, 0.86);
-    border: 1px solid rgba(34, 197, 94, 0.30);
-    color: #dcfce7;
-    padding: 14px;
-    border-radius: 16px;
-    margin-bottom: 14px;
-    font-weight: 600;
-}
- 
 h1, h2, h3, h4, label, p, span {
     color: inherit;
 }
@@ -707,6 +687,9 @@ def buat_pembahasan(rumus, total, detail):
         f"Unsur dengan kontribusi massa terbesar adalah {dominan['Nama Unsur']} "
         f"({dominan['Simbol Unsur']}) sebesar {dominan['Persentase Massa (%)']}%."
     )
+
+if "riwayat" not in st.session_state:
+    st.session_state.riwayat = []
  
  
 st.markdown("""
@@ -719,7 +702,7 @@ st.markdown("""
     </div>
     <div class="hero-content">
         <h1>Kalkulator BM / Mr Kimia</h1>
-        <p> Aplikasi kalkulator kimia interaktif yang membantu menghitung Bobot Molekul (BM/Mr) senyawa secara cepat, akurat, dan mudah, dilengkapi fitur visualisasi data, database unsur, dan chatbot edukatif.</p>
+        <p> Aplikasi kalkulator kimia interaktif yang membantu menghitung Bobot Molekul (BM/Mr) senyawa secara cepat, akurat, dan mudah, dilengkapi  database unsur.</p>
     </div>
 </div>
 """, unsafe_allow_html=True)
