@@ -725,15 +725,17 @@ with st.sidebar:
  
  
 if menu == "Kalkulator BM/Mr":
+ 
     st.subheader("Input Rumus Kimia")
-        rumus = st.text_input(
+ 
+    rumus = st.text_input(
             "Masukkan rumus kimia",
             value=contoh_rumus[pilihan],
             placeholder="Contoh: H2O, CO2, Ca(OH)2"
-        )
-
-        st.markdown("### Rumus Dasar")
-        st.info("BM/Mr = Σ massa atom × jumlah atom")
+    )
+    
+    st.markdown("### Rumus Dasar")
+    st.info("BM/Mr = Σ massa atom × jumlah atom")
  
     if st.button("Hitung BM/Mr", use_container_width=True):
         total, detail, error = hitung_bm_mr(rumus)
