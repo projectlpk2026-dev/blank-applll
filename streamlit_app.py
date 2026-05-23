@@ -726,7 +726,6 @@ with st.sidebar:
  
 if menu == "Kalkulator BM/Mr":
     st.subheader("Input Rumus Kimia")
- 
         rumus = st.text_input(
             "Masukkan rumus kimia",
             value=contoh_rumus[pilihan],
