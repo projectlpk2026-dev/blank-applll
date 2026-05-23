@@ -702,7 +702,7 @@ st.markdown("""
     </div>
     <div class="hero-content">
         <h1>Kalkulator BM / Mr Kimia</h1>
-        <p> Aplikasi kalkulator kimia interaktif yang membantu menghitung Bobot Molekul (BM/Mr) senyawa secara cepat, akurat, dan mudah, dilengkapi  database unsur.</p>
+        <p> Aplikasi kalkulator kimia yang membantu menghitung Bobot Molekul (BM/Mr) senyawa secara cepat, akurat,  mudah, dan dilengkapi  database unsur.</p>
     </div>
 </div>
 """, unsafe_allow_html=True)
