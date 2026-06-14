@@ -709,7 +709,7 @@ st.markdown("""
                 border-left:4px solid #38bdf8;
                 border-radius:12px;
             ">
-                <h4>Disusun Oleh:</h4>
+                <h5>Disusun Oleh:</h5>
                 <div>• Alisa Tiara Sani</div>
                 <div>• Alma Zahra Nurika</div>
                 <div>• Najwa Azzahra</div>
