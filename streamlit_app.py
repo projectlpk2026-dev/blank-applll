@@ -691,7 +691,6 @@ def buat_pembahasan(rumus, total, detail):
 if "riwayat" not in st.session_state:
     st.session_state.riwayat = []
  
- 
 st.markdown("""
 <div class="hero">
     <div class="logo-wrap">
@@ -700,31 +699,27 @@ st.markdown("""
         <div class="orbit"></div>
         <div class="logo-core"></div>
     </div>
-
+    
     <div class="hero-content">
         <h1>Kalkulator BM / Mr Kimia</h1>
-
-        <p>
-            Aplikasi kalkulator kimia yang membantu menghitung Bobot Molekul (BM/Mr)
-            senyawa secara cepat, akurat, mudah, dan dilengkapi database unsur.
+        <p> Aplikasi kalkulator kimia yang membantu menghitung Bobot Molekul (BM/Mr) senyawa secara cepat, akurat,  mudah, dan dilengkapi  database unsur.
         </p>
 
         <div style="
-            margin-top:20px;
-            padding:15px;
-            background:rgba(255,255,255,0.08);
-            border-left:4px solid #38bdf8;
-            border-radius:12px;
+             margin-top:20px;
+             padding:15px;
+             background:rgba(255,255,255,0.08);
+             border-left:4px solid #38bdf8;
+             border-radius:12px;
         ">
-            <h4 style="margin-bottom:10px;">Disusun Oleh:</h4>
+             <h4 style="margin-bottom:10px;">Disusun Oleh:</h4>
 
-            <div>• Alisa Tiara Sani</div>
-            <div>• Alma Zahra Nurika</div>
-            <div>• Najwa Azzahra</div>
-            <div>• Narah Agnia Nugraheni</div>
-            <div>• Wening Ayuning Tyas</div>
-        </div>
-
+             <div>Alisa Tiara Sani</div>
+             <div>Alma Zahra Nurika</div>
+             <div>Najwa Azzahra</div>
+             <div>Narah Agnia Nugraheni</div>
+            <div>Wening Ayuning Tyas</div>
+       </div>
     </div>
 </div>
 """, unsafe_allow_html=True)
