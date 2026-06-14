@@ -710,14 +710,12 @@ st.markdown("""
                 border-radius:12px;
             ">
                 <h4>Disusun Oleh:</h4>
-
                 <div>• Alisa Tiara Sani</div>
                 <div>• Alma Zahra Nurika</div>
                 <div>• Najwa Azzahra</div>
                 <div>• Narah Agnia Nugraheni</div>
                 <div>• Wening Ayuning Tyas</div>
-         </div>
-         
+         </div>       
     </div> 
 </div>
 """, unsafe_allow_html=True)
